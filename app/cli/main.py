@@ -2,6 +2,8 @@ import typer
 from pathlib import Path
 from app.core.storage import load_json, save_json
 from app.core.monitor import run_monitor
+from app.core.fetcher import fetch
+from app.core.parser import parse
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 CONFIG_FILE = BASE_DIR / "data" / "sites.json"
@@ -65,6 +67,9 @@ def add():
 
     # name
     name = typer.prompt("Enter site name")
+    if not name.strip():
+        typer.echo("Name cannot be empty")
+        return
 
     # 重複チェック
     if any(s["name"] == name for s in sites):
@@ -73,6 +78,13 @@ def add():
 
     # url
     url = typer.prompt("Enter URL")
+    if not url.startswith("http"):
+        typer.echo("Invalid URL")
+        return
+    html = fetch(url)
+    if html is None:
+        typer.echo("Failed to fetch URL")
+        return
 
     # mode
     mode_input = typer.prompt(
@@ -84,17 +96,32 @@ def add():
         mode = "selector"
 
         while True:
-            selector = typer.prompt("Type HTML selector")
+            selector = typer.prompt("Type HTML selector").strip()
+
+            if not selector:
+                typer.echo("Selector cannot be empty")
+                continue
+
             if not selector.startswith("#") and not selector.startswith("."):
                 selector = "#" + selector
-            if selector.strip():
-                break
-            typer.echo("Selector cannot be empty")
 
+            test_site = {
+                "mode": "selector",
+                "selector": selector
+            }
+
+            content = parse(test_site, html)
+
+            if not content:
+                typer.echo("Selector not found. Try again.")
+                continue
+
+            typer.echo(f"[OK] {selector} -> {content[:50]}...")
+            break
         site = {
             "name": name,
             "url": url,
-            "mode": mode,
+            "mode": "selector",
             "selector": selector
         }
 
