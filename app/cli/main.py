@@ -11,16 +11,28 @@ CONFIG_FILE = BASE_DIR / "data" / "sites.json"
 
 app = typer.Typer()
 
+# =========================
+# run
+# =========================
 @app.command()
 def run():
+    """Run programs to check if websites change"""
     run_monitor()
+
+# =========================
+# version
+# =========================
+@app.command()
+def version():
+    """Show this software's version"""
+    typer.echo("v1.0.0")
 
 # =========================
 # list
 # =========================
 @app.command()
 def list(detail: bool = typer.Option(False, "--detail", "-d")):
-    """サイト一覧"""
+    """See a list user added websites"""
 
     sites = load_json(CONFIG_FILE, [])
 
@@ -42,7 +54,7 @@ def list(detail: bool = typer.Option(False, "--detail", "-d")):
 # =========================
 @app.command()
 def remove(name: str):
-    """サイト削除"""
+    """Remove a website from a list"""
 
     sites = load_json(CONFIG_FILE, [])
 
@@ -61,7 +73,7 @@ def remove(name: str):
 # =========================
 @app.command()
 def add():
-    """サイト追加"""
+    """Add a website to a list"""
 
     sites = load_json(CONFIG_FILE, [])
 
