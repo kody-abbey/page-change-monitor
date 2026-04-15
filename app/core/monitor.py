@@ -12,8 +12,8 @@ CONFIG_FILE = BASE_DIR / "data" / "sites.json"
 STATE_FILE = BASE_DIR / "data" / "state.json"
 
 def run_monitor():
-    sites = load_json(CONFIG_FILE)
-    state = load_json(STATE_FILE)
+    sites = load_json(CONFIG_FILE, [])
+    state = load_json(STATE_FILE, {})
 
     for site in sites:
         html = fetch(site["url"])

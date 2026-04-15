@@ -22,7 +22,7 @@ def run():
 def list(detail: bool = typer.Option(False, "--detail", "-d")):
     """サイト一覧"""
 
-    sites = load_json(CONFIG_FILE)
+    sites = load_json(CONFIG_FILE, [])
 
     if not sites:
         typer.echo("No sites")
@@ -44,7 +44,7 @@ def list(detail: bool = typer.Option(False, "--detail", "-d")):
 def remove(name: str):
     """サイト削除"""
 
-    sites = load_json(CONFIG_FILE)
+    sites = load_json(CONFIG_FILE, [])
 
     new_sites = [s for s in sites if s["name"] != name]
 
@@ -63,7 +63,7 @@ def remove(name: str):
 def add():
     """サイト追加"""
 
-    sites = load_json(CONFIG_FILE)
+    sites = load_json(CONFIG_FILE, [])
 
     # name
     name = typer.prompt("Enter site name")
