@@ -1,16 +1,11 @@
 import time
 from pathlib import Path
-
 from .fetcher import fetch
 from .parser import parse
 from .utils import hash_text
 from .storage import load_json, save_json
 from .logger import setup_logger
-
-BASE_DIR = Path(__file__).resolve().parents[2]
-
-CONFIG_FILE = BASE_DIR / "data" / "sites.json"
-STATE_FILE = BASE_DIR / "data" / "state.json"
+from app.config import CONFIG_FILE, STATE_FILE
 
 logger = setup_logger()
 
