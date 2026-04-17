@@ -99,7 +99,7 @@ pum add
 
 You will be prompted to enter:
 
-* Site name
+* Site name (any name you like, used locally to identify the site)
 * URL
 * Mode:
 

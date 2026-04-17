@@ -1,6 +1,6 @@
 [project]
 name = "page-update-monitor"
-version = "1.0.1"
+version = "1.0.2"
 description = "CLI tool to monitor web page updates"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]   
-pum = "app.cli.main:app"
+pum = "page_update_monitor.cli.main:app"
 
 [tool.setuptools.packages.find]
-include = ["app*"]
+include = ["page_update_monitor*"]
