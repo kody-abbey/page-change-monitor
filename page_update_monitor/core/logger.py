@@ -1,5 +1,5 @@
 import logging
-from app.config import LOG_FILE
+from page_update_monitor.config import LOG_FILE
 from logging.handlers import RotatingFileHandler
 
 

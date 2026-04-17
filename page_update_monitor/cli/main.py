@@ -1,9 +1,10 @@
 import typer
-from app.config import CONFIG_FILE
-from app.core.storage import load_json, save_json
-from app.core.monitor import run_monitor
-from app.core.fetcher import fetch
-from app.core.parser import parse
+from page_update_monitor import __version__
+from page_update_monitor.config import CONFIG_FILE
+from page_update_monitor.core.storage import load_json, save_json
+from page_update_monitor.core.monitor import run_monitor
+from page_update_monitor.core.fetcher import fetch
+from page_update_monitor.core.parser import parse
 
 
 
@@ -23,11 +24,11 @@ def check():
 @app.command()
 def version():
     """Show this software's version"""
-    typer.echo("v1.0.0")
+    typer.echo(__version__)
 
 def version_callback(value: bool):
     if value:
-        typer.echo("v1.0.0")
+        typer.echo(__version__)
         raise typer.Exit()
 
 # =========================

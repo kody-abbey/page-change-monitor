@@ -5,7 +5,7 @@ from .parser import parse
 from .utils import hash_text
 from .storage import load_json, save_json
 from .logger import setup_logger
-from app.config import CONFIG_FILE, STATE_FILE
+from page_update_monitor.config import CONFIG_FILE, STATE_FILE
 
 logger = setup_logger()
 
