@@ -1,12 +1,10 @@
 import typer
-from pathlib import Path
+from app.config import CONFIG_FILE
 from app.core.storage import load_json, save_json
 from app.core.monitor import run_monitor
 from app.core.fetcher import fetch
 from app.core.parser import parse
 
-BASE_DIR = Path(__file__).resolve().parents[2]
-CONFIG_FILE = BASE_DIR / "data" / "sites.json"
 
 
 app = typer.Typer()
