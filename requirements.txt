@@ -2,3 +2,4 @@ typer>=0.24,<1.0
 requests>=2.33,<3.0
 beautifulsoup4>=4.14,<5.0
 rich>=15.0,<16.0
+platformdirs>=4.9,<5.0
