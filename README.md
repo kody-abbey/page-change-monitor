@@ -4,11 +4,12 @@ A simple CLI tool to monitor web page updates.
 
 Register any web page and check whether it has changed since the last time you checked.
 You can monitor the entire page or specific elements using CSS selectors.
-
+---
 - [Page Update Monitor](#page-update-monitor)
+  - [You can monitor the entire page or specific elements using CSS selectors.](#you-can-monitor-the-entire-page-or-specific-elements-using-css-selectors)
   - [Features](#features)
   - [Installation](#installation)
-  - [Setup (Recommended)](#setup-recommended)
+  - [Quick Start](#quick-start)
   - [Usage](#usage)
   - [Commands](#commands)
     - [See help](#see-help)
@@ -22,6 +23,7 @@ You can monitor the entire page or specific elements using CSS selectors.
   - [Example Workflow](#example-workflow)
   - [Requirements](#requirements)
   - [Dependencies](#dependencies)
+  - [Development](#development)
 
 ---
 
@@ -37,58 +39,32 @@ You can monitor the entire page or specific elements using CSS selectors.
 
 ## Installation
 
-Clone the repository:
+Install via pip:
 
 ```bash
-git clone https://github.com/yourname/page-update-monitor.git
-cd page-update-monitor
+pip install page-update-monitor
 ```
 
 ---
-
-## Setup (Recommended)
-
-Create a virtual environment:
+## Quick Start
 
 ```bash
-python -m venv .venv
+pip install page-update-monitor
+pum add
+pum check
 ```
-
-Activate it:
-
-**Windows:**
-
-```bash
-.venv\Scripts\activate
-```
-
-**Linux / macOS:**
-
-```bash
-source .venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
----
 
 ## Usage
 
-All commands are executed via:
-
 ```bash
-python run.py [COMMAND]
+pum [COMMAND]
 ```
 
-You can also check the version globally:
+Check version:
 
 ```bash
-python run.py --version
-python run.py -v
+pum --version
+pum -v
 ```
 
 ---
@@ -96,14 +72,17 @@ python run.py -v
 ## Commands
 
 ### See help
+
 ```bash
-python run.py --help
+pum --help
 ```
---- 
+
+---
+
 ### Check for updates
 
 ```bash
-python run.py check
+pum check
 ```
 
 Checks all registered websites and reports changes.
@@ -113,7 +92,7 @@ Checks all registered websites and reports changes.
 ### Add a website
 
 ```bash
-python run.py add
+pum add
 ```
 
 You will be prompted to enter:
@@ -145,13 +124,13 @@ The tool will validate the selector and show a preview:
 ### List websites
 
 ```bash
-python run.py list
+pum list
 ```
 
 With details:
 
 ```bash
-python run.py list -d
+pum list -d
 ```
 
 ---
@@ -159,19 +138,19 @@ python run.py list -d
 ### Remove a website
 
 ```bash
-python run.py remove [name]
+pum remove [name]
 ```
 
 Alias:
 
 ```bash
-python run.py rm [name]
+pum rm [name]
 ```
 
 Example:
 
 ```bash
-python run.py rm example-site
+pum rm example-site
 ```
 
 ---
@@ -179,14 +158,14 @@ python run.py rm example-site
 ### Show version
 
 ```bash
-python run.py version
+pum version
 ```
 
 Or:
 
 ```bash
-python run.py --version
-python run.py -v
+pum --version
+pum -v
 ```
 
 ---
@@ -204,20 +183,20 @@ If a difference is detected, it reports an update.
 
 ## Data Storage
 
-Registered sites are stored in:
+Configuration files are stored in the user config directory:
 
-```
-data/sites.json
-```
+* Linux: `~/.config/page-update-monitor/`
+* macOS: `~/Library/Application Support/page-update-monitor/`
+* Windows: `%APPDATA%/page-update-monitor/`
 
 ---
 
 ## Example Workflow
 
 ```bash
-python run.py add
-python run.py list
-python run.py check
+pum add
+pum list
+pum check
 ```
 
 ---
@@ -225,7 +204,6 @@ python run.py check
 ## Requirements
 
 * Python 3.10+
-* See `requirements.txt` for full dependencies
 
 ---
 
@@ -235,3 +213,15 @@ python run.py check
 * requests
 * beautifulsoup4
 * rich
+
+---
+
+## Development
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourname/page-update-monitor.git
+cd page-update-monitor
+pip install -e .
+```
