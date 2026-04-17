@@ -12,10 +12,10 @@ CONFIG_FILE = BASE_DIR / "data" / "sites.json"
 app = typer.Typer()
 
 # =========================
-# run
+# check
 # =========================
 @app.command()
-def run():
+def check():
     """Run programs to check if websites change"""
     run_monitor()
 
@@ -26,6 +26,11 @@ def run():
 def version():
     """Show this software's version"""
     typer.echo("v1.0.0")
+
+def version_callback(value: bool):
+    if value:
+        typer.echo("v1.0.0")
+        raise typer.Exit()
 
 # =========================
 # list
@@ -50,7 +55,7 @@ def list(detail: bool = typer.Option(False, "--detail", "-d")):
             typer.echo(line)
 
 # =========================
-# remove
+# remove or rm
 # =========================
 @app.command()
 def remove(name: str):
@@ -66,7 +71,7 @@ def remove(name: str):
 
     save_json(CONFIG_FILE, new_sites)
     typer.echo(f"{name} is deleted.")
-
+app.command(name="rm")(remove)
 
 # =========================
 # add
@@ -150,6 +155,19 @@ def add():
     save_json(CONFIG_FILE, sites)
 
     typer.echo("Added")
+
+@app.callback()
+def main(
+    version: bool = typer.Option(
+        None,
+        "--version",
+        "-v",
+        help="Show version",
+        callback=version_callback,
+        is_eager=True,
+    )
+):
+    pass
 
 if __name__ == "__main__":
     app()
