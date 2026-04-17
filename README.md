@@ -1,15 +1,23 @@
 # Page Update Monitor
 
-A simple CLI tool to monitor web page updates.
+---
+## Quick Start
 
+```bash
+pip install page-update-monitor
+pum add
+pum check
+```
+---
+
+A simple CLI tool to monitor web page updates.
 Register any web page and check whether it has changed since the last time you checked.
 You can monitor the entire page or specific elements using CSS selectors.
----
+
 - [Page Update Monitor](#page-update-monitor)
-  - [You can monitor the entire page or specific elements using CSS selectors.](#you-can-monitor-the-entire-page-or-specific-elements-using-css-selectors)
+  - [Quick Start](#quick-start)
   - [Features](#features)
   - [Installation](#installation)
-  - [Quick Start](#quick-start)
   - [Usage](#usage)
   - [Commands](#commands)
     - [See help](#see-help)
@@ -46,13 +54,7 @@ pip install page-update-monitor
 ```
 
 ---
-## Quick Start
 
-```bash
-pip install page-update-monitor
-pum add
-pum check
-```
 
 ## Usage
 
